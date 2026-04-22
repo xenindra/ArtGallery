@@ -32,18 +32,35 @@ public class CollectionsController : Controller
     {
         IQueryable<Painting> query = _db.Paintings;
 
-        query = name switch
+        switch (name)
         {
-            "Импрессионизм" => query.Where(p => p.Style == "Импрессионизм"),
-            "Сюрреализм" => query.Where(p => p.Style == "Сюрреализм"),
-            "Реализм" => query.Where(p => p.Style == "Реализм"),
-            "XIX век" => query.Where(p => p.Year >= 1800 && p.Year <= 1899),
-            "XX век" => query.Where(p => p.Year >= 1900 && p.Year <= 1999),
-            "XXI век" => query.Where(p => p.Year >= 2000),
-            "Русское искусство" => query.Where(p => p.Country == "Россия"),
-            "Европейское искусство" => query.Where(p => new[] { "Испания", "Франция", "Нидерланды", "Италия", "Норвегия" }.Contains(p.Country)),
-            _ => query
-        };
+            case "Импрессионизм":
+                query = query.Where(p => p.Style == "Импрессионизм");
+                break;
+            case "Сюрреализм":
+                query = query.Where(p => p.Style == "Сюрреализм");
+                break;
+            case "Реализм":
+                query = query.Where(p => p.Style == "Реализм");
+                break;
+            case "XIX век":
+                query = query.Where(p => p.Year >= 1800 && p.Year <= 1899);
+                break;
+            case "XX век":
+                query = query.Where(p => p.Year >= 1900 && p.Year <= 1999);
+                break;
+            case "XXI век":
+                query = query.Where(p => p.Year >= 2000);
+                break;
+            case "Русское искусство":
+                query = query.Where(p => p.Country == "Россия");
+                break;
+            case "Европейское искусство":
+                query = query.Where(p => new[] { "Испания", "Франция", "Нидерланды", "Италия", "Норвегия" }.Contains(p.Country));
+                break;
+            default:
+                break;
+        }
 
         var paintings = await query.ToListAsync();
         ViewBag.CollectionName = name;
