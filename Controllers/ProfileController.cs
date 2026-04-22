@@ -1,4 +1,4 @@
-using ArtGallery.Data;
+п»їusing ArtGallery.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,7 +20,7 @@ public class ProfileController : Controller
             ? await _db.Paintings.Where(p => ids.Contains(p.Id)).ToListAsync()
             : new();
 
-        // ВАЖНО: Передаём через ViewBag, а не через модель
+        // Р’РђР–РќРћ: РџРµСЂРµРґР°С‘Рј С‡РµСЂРµР· ViewBag, Р° РЅРµ С‡РµСЂРµР· РјРѕРґРµР»СЊ
         ViewBag.Favorites = favorites;
         return View();
     }
@@ -38,7 +38,7 @@ public class ProfileController : Controller
         {
             ids.Remove(id);
             HttpContext.Session.SetString("favorites", string.Join(',', ids));
-            TempData["SuccessMessage"] = "Картина удалена из избранного.";
+            TempData["SuccessMessage"] = "РљР°СЂС‚РёРЅР° СѓРґР°Р»РµРЅР° РёР· РёР·Р±СЂР°РЅРЅРѕРіРѕ.";
         }
 
         return RedirectToAction("Index");
