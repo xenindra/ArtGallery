@@ -1,0 +1,213 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\css\\add-painting.css",
+      "PackagePath": "staticwebassets\\css\\add-painting.css"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\css\\catalog.css",
+      "PackagePath": "staticwebassets\\css\\catalog.css"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\css\\gallery.css",
+      "PackagePath": "staticwebassets\\css\\gallery.css"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\condo_avatar.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\condo_avatar.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\dali_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\dali_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\davinci_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\davinci_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\koshlyakov_avatar.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\koshlyakov_avatar.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\malevich_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\malevich_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\monet_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\monet_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\munch_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\munch_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\murakami_avatar.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\murakami_avatar.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\picasso_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\picasso_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\repin_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\repin_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\serov_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\serov_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\shishkin_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\shishkin_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\authors\\vangogh_author.jpg",
+      "PackagePath": "staticwebassets\\images\\authors\\vangogh_author.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\52b3d049-9e17-47cb-89cc-5718de4bea21.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\52b3d049-9e17-47cb-89cc-5718de4bea21.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\5dbb0c2d-0318-4160-9ee4-605248334f4e.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\5dbb0c2d-0318-4160-9ee4-605248334f4e.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection1.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection1.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection2.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection2.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_19century.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_19century.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_20century.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_20century.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_21century.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_21century.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_european.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_european.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_impressionism.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_impressionism.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_modern.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_modern.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_realism.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_realism.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_russian.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_russian.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\collection_surrealism.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\collection_surrealism.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\condo_boogie.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\condo_boogie.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\fd268d33-f448-4fe4-ab12-03b8b156ceda.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\fd268d33-f448-4fe4-ab12-03b8b156ceda.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\hero-bg.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\hero-bg.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\koshlyakov_venice.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\koshlyakov_venice.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\logo.png",
+      "PackagePath": "staticwebassets\\images\\paintings\\logo.png"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\murakami_flowers.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\murakami_flowers.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting10.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting10.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting11.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting11.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting12.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting12.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting3.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting3.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting4.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting4.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting5.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting5.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting6.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting6.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting7.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting7.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting8.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting8.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\images\\paintings\\painting9.jpg",
+      "PackagePath": "staticwebassets\\images\\paintings\\painting9.jpg"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\js\\add-painting.js",
+      "PackagePath": "staticwebassets\\js\\add-painting.js"
+    },
+    {
+      "Id": "C:\\ArtGallery\\ArtGallery\\wwwroot\\js\\catalog-ajax.js",
+      "PackagePath": "staticwebassets\\js\\catalog-ajax.js"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.ArtGallery.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.build.ArtGallery.props",
+      "PackagePath": "build\\ArtGallery.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.ArtGallery.props",
+      "PackagePath": "buildMultiTargeting\\ArtGallery.props"
+    },
+    {
+      "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.buildTransitive.ArtGallery.props",
+      "PackagePath": "buildTransitive\\ArtGallery.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,137 @@
+@model List<ArtGallery.Models.Painting>
+@{
+    ViewData["Title"] = ViewBag.CollectionName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .page-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 3rem 0;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .page-hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    .page-hero p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+    .collection-single-section {
+        padding: 2rem 0 4rem;
+    }
+    .collection-description {
+        background: #f8f9fa;
+        padding: 2rem;
+        border-radius: 12px;
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+        color: #444;
+    }
+    .collection-stats-detailed {
+        display: flex;
+        gap: 2.5rem;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #dee2e6;
+    }
+    .stat-item-detailed {
+        text-align: center;
+    }
+    .stat-number {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #e74c3c;
+    }
+    .stat-label {
+        color: #888;
+        font-size: 0.9rem;
+    }
+    h2 {
+        margin: 2rem 0 1.5rem;
+        color: #2c3e50;
+        font-size: 1.8rem;
+    }
+    .paintings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    .painting-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: transform 0.2s;
+    }
+    .painting-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .painting-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+    .painting-info {
+        padding: 1rem;
+    }
+    .painting-info h3 {
+        font-size: 1rem;
+        color: #2c3e50;
+        margin-bottom: 0.3rem;
+    }
+    .painting-author {
+        color: #e74c3c;
+        font-size: 0.9rem;
+    }
+    .painting-style-year {
+        color: #888;
+        font-size: 0.85rem;
+    }
+</style>
+
+<div class="page-hero">
+    <div class="container">
+        <h1>@ViewBag.CollectionName</h1>
+        <p>@ViewBag.CollectionSubtitle</p>
+    </div>
+</div>
+
+<div class="collection-single-section">
+    <div class="container">
+        <div class="collection-description">
+            <p>@ViewBag.CollectionDescription</p>
+            <div class="collection-stats-detailed">
+                <div class="stat-item-detailed">
+                    <span class="stat-number">@Model.Count</span>
+                    <span class="stat-label">картин</span>
+                </div>
+                <div class="stat-item-detailed">
+                    <span class="stat-number">@ViewBag.CollectionPeriod</span>
+                    <span class="stat-label">период</span>
+                </div>
+            </div>
+        </div>
+
+        <h2>Картины в подборке</h2>
+        <div class="paintings-grid">
+            @foreach (var p in Model)
+            {
+                <div class="painting-card" onclick="location.href='/Paintings/@p.Id'">
+                    <img src="@p.ImageUrl" alt="@p.Title" onerror="this.src='/images/placeholder.jpg'" />
+                    <div class="painting-info">
+                        <h3>@p.Title</h3>
+                        <p class="painting-author">@p.Author</p>
+                        <p class="painting-style-year">@p.Style • @p.Year</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

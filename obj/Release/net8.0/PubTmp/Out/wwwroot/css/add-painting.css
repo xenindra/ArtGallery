@@ -1,0 +1,114 @@
+/* add-painting.css — стили формы добавления картины (ЛР5) */
+
+.add-painting-section { padding: 2rem 0 4rem; }
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+@media (max-width: 700px) { .form-grid { grid-template-columns: 1fr; } }
+
+.form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+.form-group-full { margin-bottom: 1.5rem; }
+
+.form-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+.required-star { color: #e74c3c; }
+
+.form-input,
+.form-textarea {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: white;
+}
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
+}
+.form-textarea { resize: vertical; min-height: 100px; }
+
+/* Состояния валидации */
+.form-input.input-error  { border-color: #e74c3c; background: #fff8f8; }
+.form-input.input-ok     { border-color: #27ae60; }
+
+.field-error {
+    font-size: 0.82rem;
+    color: #e74c3c;
+    min-height: 1rem;
+}
+.field-hint {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* Сводка ошибок сверху */
+.form-error-summary {
+    background: #fff0f0;
+    border: 1px solid #e74c3c;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #c0392b;
+    font-size: 0.9rem;
+}
+.form-error-summary ul { margin: 0.5rem 0 0 1.2rem; }
+.form-error-summary li { margin-bottom: 0.2rem; }
+
+/* Кнопки */
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+}
+.btn-submit {
+    padding: 0.8rem 2.5rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+.btn-submit:hover    { background: #c0392b; }
+.btn-submit:active   { transform: scale(0.97); }
+.btn-submit:disabled { background: #aaa; cursor: not-allowed; }
+
+.btn-cancel {
+    padding: 0.8rem 2rem;
+    background: none;
+    border: 1.5px solid #ddd;
+    border-radius: 25px;
+    color: #666;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: border-color 0.2s, color 0.2s;
+}
+.btn-cancel:hover { border-color: #888; color: #333; }
+
+.form-required-note { font-size: 0.85rem; color: #aaa; margin-left: auto; }
+
+/* Анимация тряски при ошибке */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%       { transform: translateX(-6px); }
+    40%       { transform: translateX( 6px); }
+    60%       { transform: translateX(-4px); }
+    80%       { transform: translateX( 4px); }
+}
+.btn-shake { animation: shake 0.4s ease; }

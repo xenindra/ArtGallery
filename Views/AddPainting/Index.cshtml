@@ -1,0 +1,170 @@
+@model ArtGallery.ViewModels.AddPaintingViewModel
+@{
+    ViewData["Title"] = "Добавить картину";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+        <link rel="stylesheet" href="~/css/add-painting.css" />
+}
+
+<div class="page-hero">
+    <div class="container">
+        <h1>Добавить картину</h1>
+        <p>Пополните каталог новым произведением искусства</p>
+    </div>
+</div>
+
+<div class="add-painting-section">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Главная</a> /
+            <a href="/Catalog">Каталог</a> /
+            <span>Добавить картину</span>
+        </div>
+
+        @if (!ViewData.ModelState.IsValid && ViewData.ModelState.ErrorCount > 0)
+        {
+                <div class="form-error-summary">
+                    <strong>Пожалуйста, исправьте ошибки:</strong>
+                    <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                                <li>@error.ErrorMessage</li>
+                    }
+                    </ul>
+                </div>
+        }
+
+        <form asp-action="Index" asp-controller="AddPainting" method="post" id="add-painting-form" enctype="multipart/form-data" novalidate>
+            @Html.AntiForgeryToken()
+
+            <div class="form-grid">
+
+                <!-- Название -->
+                <div class="form-group">
+                    <label asp-for="Title" class="form-label">
+                        Название картины <span class="required-star">*</span>
+                    </label>
+                    <input asp-for="Title" class="form-input" id="field-title"
+                           placeholder="Например: Звёздная ночь"
+                           autocomplete="off" />
+                    <span class="field-hint">Первый символ — заглавная буква</span>
+                    <span asp-validation-for="Title" class="field-error"></span>
+                    <span class="field-duplicate-warning" id="title-duplicate" style="display:none;color:#e74c3c;font-size:0.85rem;">
+                        ⚠ Такая картина уже есть в базе данных
+                    </span>
+                </div>
+
+                <!-- Автор -->
+                <div class="form-group">
+                    <label asp-for="Author" class="form-label">
+                        Автор <span class="required-star">*</span>
+                    </label>
+                    <input asp-for="Author" class="form-input" id="field-author"
+                           placeholder="Например: Винсент Ван Гог" />
+                    <span class="field-hint">Имя и Фамилия с заглавной буквы</span>
+                    <span asp-validation-for="Author" class="field-error"></span>
+                </div>
+
+                <!-- Год -->
+                <div class="form-group">
+                    <label asp-for="Year" class="form-label">
+                        Год создания <span class="required-star">*</span>
+                    </label>
+                    <input asp-for="Year" type="number" class="form-input" id="field-year"
+                           placeholder="Например: 1889"
+                           min="1000" max="@DateTime.Now.Year" />
+                    <span class="field-hint">От 1000 до @DateTime.Now.Year</span>
+                    <span asp-validation-for="Year" class="field-error"></span>
+                </div>
+
+                <!-- Стиль -->
+                <div class="form-group">
+                    <label asp-for="Style" class="form-label">
+                        Художественный стиль <span class="required-star">*</span>
+                    </label>
+                    <select asp-for="Style" class="form-input" id="field-style">
+                        <option value="">— Выберите стиль —</option>
+                        @foreach (var s in Model.AllStyles)
+                        {
+                                <option value="@s">@s</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Style" class="field-error"></span>
+                </div>
+
+                <!-- Страна -->
+                <div class="form-group">
+                    <label asp-for="Country" class="form-label">
+                        Страна <span class="required-star">*</span>
+                    </label>
+                    <select asp-for="Country" class="form-input" id="field-country">
+                        <option value="">— Выберите страну —</option>
+                        @foreach (var c in Model.AllCountries)
+                        {
+                                <option value="@c">@c</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Country" class="field-error"></span>
+                </div>
+
+                <!-- Материалы -->
+                <div class="form-group">
+                    <label asp-for="Materials" class="form-label">Материалы</label>
+                    <input asp-for="Materials" class="form-input"
+                           placeholder="Например: Масло, холст" />
+                    <span asp-validation-for="Materials" class="field-error"></span>
+                </div>
+
+                <!-- Размер -->
+                <div class="form-group">
+                    <label asp-for="Size" class="form-label">Размер</label>
+                    <input asp-for="Size" class="form-input" id="field-size"
+                           placeholder="Например: 73.7 × 92.1 см" />
+                    <span class="field-hint">Формат: ширина × высота см</span>
+                    <span asp-validation-for="Size" class="field-error"></span>
+                </div>
+
+                <!-- Загрузка файла -->
+                <div class="form-group">
+                    <label class="form-label">Изображение</label>
+                    <input type="file" name="ImageFile" class="form-input" id="field-image" accept="image/*" />
+                    <span class="field-hint">Выберите файл с компьютера (jpg, png, gif)</span>
+                    <span class="field-error"></span>
+
+                    <!-- Скрытое поле с значением по умолчанию -->
+                    <input type="hidden" asp-for="ImageUrl" id="ImageUrl" value="/images/placeholder.jpg" />
+
+                    <!-- Предпросмотр -->
+                    <div id="image-preview-container" style="display:none;margin-top:0.5rem;">
+                        <img id="image-preview" src="" alt="Предпросмотр"
+                             style="max-height:120px;border-radius:6px;border:1px solid #ddd;" />
+                    </div>
+                </div>
+
+            </div><!-- /form-grid -->
+
+            <!-- Описание — на всю ширину -->
+            <div class="form-group form-group-full">
+                <label asp-for="Description" class="form-label">Описание картины</label>
+                <textarea asp-for="Description" class="form-textarea"
+                          rows="4" placeholder="Краткое описание истории и значения картины..."></textarea>
+                <span asp-validation-for="Description" class="field-error"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-submit" id="submit-btn">
+                    Добавить в каталог
+                </button>
+                <a href="/Catalog" class="btn-cancel">Отмена</a>
+                <span class="form-required-note">* — обязательные поля</span>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+        <script src="~/js/add-painting.js"></script>
+}

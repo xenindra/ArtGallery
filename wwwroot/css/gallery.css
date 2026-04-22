@@ -1,0 +1,452 @@
+
+
+/* ── Главная страница ─────────────────────────────────────────── */
+.hero-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background: white;
+    color: #667eea;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+}
+.hero-btn:hover { transform: translateY(-2px); }
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+.featured-card {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.featured-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.featured-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
+.featured-info { padding: 1rem 1.2rem; background: white; }
+.featured-info h3 { font-size: 1rem; color: #2c3e50; margin-bottom: 0.3rem; }
+.featured-info p  { font-size: 0.85rem; color: #888; }
+
+/* ── Хлебные крошки ───────────────────────────────────────────── */
+.breadcrumb {
+    font-size: 0.9rem;
+    color: #888;
+    margin-bottom: 2rem;
+    padding-top: 1.5rem;
+}
+.breadcrumb a { color: #667eea; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* ── Герой для обычных страниц ───────────────────────────────── */
+.page-hero {
+    background: linear-gradient(135deg, rgba(102,126,234,0.85), rgba(118,75,162,0.85));
+    color: white;
+    padding: 4rem 0 3rem;
+    text-align: center;
+}
+.page-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; }
+.page-hero p  { font-size: 1.1rem; opacity: 0.9; }
+
+/* ── Каталог: поиск с подсказками ────────────────────────────── */
+.search-wrapper { position: relative; margin-bottom: 1rem; }
+
+.search-suggestions {
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: white;
+    border: 2px solid #e74c3c;
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    z-index: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    max-height: 280px;
+    overflow-y: auto;
+}
+.suggestion-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: #2c3e50;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
+}
+.suggestion-item:last-child { border-bottom: none; }
+.suggestion-item:hover { background: #fff5f5; color: #e74c3c; }
+
+/* ── Фильтр: диапазон года ───────────────────────────────────── */
+.year-range {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.year-input {
+    width: 80px;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.year-input:focus { border-color: #e74c3c; outline: none; }
+
+/* ── Кнопка i на карточке ────────────────────────────────────── */
+.painting-card { position: relative; }
+.painting-info-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    width: 28px; height: 28px;
+    background: rgba(255,255,255,0.92);
+    border: 2px solid #e74c3c;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 0.85rem; font-style: italic;
+    color: #e74c3c;
+    cursor: pointer; z-index: 10;
+    transition: all 0.2s;
+}
+.painting-info-btn:hover { background: #e74c3c; color: white; }
+
+/* ── Кнопка избранного ───────────────────────────────────────── */
+.add-to-favorites {
+    background: none;
+    border: 1.5px solid #e74c3c;
+    color: #e74c3c;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.25s;
+    width: 100%;
+}
+.add-to-favorites:hover  { background: #e74c3c; color: white; }
+.add-to-favorites.in-favorites { background: #e74c3c; color: white; }
+
+/* ── Модальное окно ──────────────────────────────────────────── */
+.modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 2000;
+    display: flex; align-items: center; justify-content: center;
+}
+.modal-window {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 520px; width: 90%;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    max-height: 85vh; overflow-y: auto;
+}
+.modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none;
+    font-size: 1.6rem; cursor: pointer; color: #888;
+    transition: color 0.2s;
+}
+.modal-close:hover { color: #e74c3c; }
+.modal-title { font-size: 1.3rem; font-weight: 700; color: #2c3e50; margin-bottom: 1.2rem; padding-right: 2rem; }
+.modal-fields { display: grid; gap: 0.5rem; margin-bottom: 1rem; }
+.modal-row { display: flex; gap: 1rem; font-size: 0.95rem; }
+.modal-row span   { color: #888; min-width: 100px; }
+.modal-row strong { color: #2c3e50; }
+.modal-description { font-size: 0.9rem; color: #555; line-height: 1.6; border-top: 1px solid #eee; padding-top: 1rem; margin-top: 0.5rem; }
+.modal-loading { text-align: center; color: #888; padding: 2rem; }
+.modal-btn-primary {
+    display: inline-block;
+    padding: 0.5rem 1.2rem;
+    background: #2c3e50;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+}
+.modal-btn-primary:hover { background: #1a252f; }
+
+/* ── Пагинация ───────────────────────────────────────────────── */
+.pagination {
+    display: flex; justify-content: center;
+    gap: 0.5rem; margin-top: 2rem; flex-wrap: wrap;
+}
+.page-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    background: white; border-radius: 6px;
+    cursor: pointer; font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.page-btn:hover  { background: #f0f0f0; }
+.page-btn.active { background: #e74c3c; color: white; border-color: #e74c3c; }
+
+/* ── Нет результатов ─────────────────────────────────────────── */
+.no-results { grid-column: 1/-1; text-align: center; color: #888; font-size: 1.1rem; padding: 3rem; }
+
+/* ── Уведомления ─────────────────────────────────────────────── */
+.notification {
+    position: fixed; top: 90px; right: 20px;
+    padding: 0.9rem 1.6rem;
+    border-radius: 8px; font-size: 0.95rem; font-weight: 500;
+    z-index: 9999;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    animation: slideInRight 0.3s ease;
+}
+.notification-success { background: #27ae60; color: white; }
+.notification-info    { background: #2980b9; color: white; }
+@keyframes slideInRight {
+    from { transform: translateX(110%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+/* ── Страница картины ────────────────────────────────────────── */
+.painting-detail { padding: 2rem 0 4rem; }
+.painting-detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+}
+@media (max-width: 768px) {
+    .painting-detail-layout { grid-template-columns: 1fr; }
+}
+.painting-detail-image img {
+    width: 100%; border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.painting-detail-info h1 { font-size: 2rem; color: #2c3e50; margin-bottom: 0.5rem; }
+.detail-author { font-size: 1.2rem; color: #e74c3c; margin-bottom: 0.5rem; }
+.detail-author a { color: #e74c3c; text-decoration: none; }
+.detail-meta { color: #888; margin-bottom: 1.5rem; }
+.detail-fields { margin-bottom: 1.5rem; }
+.detail-row { display: flex; gap: 1rem; padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0; font-size: 0.95rem; }
+.detail-row span { color: #888; min-width: 100px; }
+.detail-row strong { color: #2c3e50; }
+.detail-description { color: #555; line-height: 1.7; margin-bottom: 2rem; }
+.similar-section h2, .author-paintings h2 { font-size: 1.8rem; color: #2c3e50; margin-bottom: 1.5rem; }
+.similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+/* ── Страница авторов ────────────────────────────────────────── */
+.authors-section { padding: 3rem 0; }
+.authors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+.author-card-detailed {
+    display: flex; gap: 1.2rem; align-items: center;
+    padding: 1.2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.author-card-detailed:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+.author-image img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+.author-info-detailed h2 { font-size: 1.1rem; color: #2c3e50; margin-bottom: 0.2rem; }
+.author-years, .author-country { font-size: 0.85rem; color: #888; }
+.author-style { font-size: 0.85rem; color: #e74c3c; margin-top: 0.2rem; }
+
+/* ── Страница автора (детали) ────────────────────────────────── */
+.author-detail { padding: 2rem 0 4rem; }
+.author-detail-layout {
+    display: grid; grid-template-columns: 300px 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+}
+@media (max-width: 768px) { .author-detail-layout { grid-template-columns: 1fr; } }
+.author-detail-photo img { width: 100%; border-radius: 12px; }
+.author-detail-info h1 { font-size: 2rem; color: #2c3e50; margin-bottom: 0.5rem; }
+.author-style-tag {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background: #fff0f0; color: #e74c3c;
+    border-radius: 20px; font-size: 0.85rem; margin-bottom: 1.5rem;
+}
+.author-bio h3 { font-size: 1.2rem; color: #2c3e50; margin-bottom: 0.8rem; }
+.author-bio p  { color: #555; line-height: 1.7; }
+
+/* ── Success banner (после добавления картины) ───────────────── */
+.success-banner {
+    background: #27ae60;
+    color: white;
+    padding: 0.8rem 0;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ── Профиль / избранное ─────────────────────────────────────── */
+.profile-section { padding: 3rem 0 4rem; }
+.profile-section h2 { font-size: 1.8rem; color: #2c3e50; margin-bottom: 2rem; }
+.empty-favorites { text-align: center; padding: 3rem; color: #888; }
+.empty-favorites p { font-size: 1.1rem; margin-bottom: 1.5rem; }
+
+/* ── Каталог: catalog-hero ───────────────────────────────────── */
+.catalog-hero {
+    background: linear-gradient(135deg, rgba(102,126,234,0.85), rgba(118,75,162,0.85));
+    color: white; padding: 4rem 0 3rem; text-align: center;
+}
+.catalog-hero h1 { font-size: 2.5rem; margin-bottom: 0.8rem; }
+.catalog-hero p  { font-size: 1.1rem; opacity: 0.9; }
+
+/* Страница подборок */
+.collections-section {
+    padding: 3rem 0;
+}
+
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.collection-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+    .collection-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+.collection-image {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+    .collection-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s;
+    }
+
+.collection-card:hover .collection-image img {
+    transform: scale(1.05);
+}
+
+.collection-overlay {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+.collection-badge {
+    background: #e74c3c;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.collection-info {
+    padding: 1.2rem;
+}
+
+    .collection-info h3 {
+        font-size: 1.2rem;
+        color: #2c3e50;
+        margin-bottom: 0.3rem;
+    }
+
+    .collection-info p {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+.collection-stats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+
+.collection-count {
+    color: #e74c3c;
+    font-weight: 600;
+}
+
+.collection-period {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.view-collection {
+    width: 100%;
+    padding: 0.7rem;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+    .view-collection:hover {
+        background: #c0392b;
+    }
+
+/* Страница отдельной подборки */
+.collection-single-section {
+    padding: 2rem 0 4rem;
+}
+
+.collection-description {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+    color: #444;
+}
+
+.collection-stats-detailed {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.stat-item-detailed {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e74c3c;
+}
+
+.stat-label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.collection-single-section h2 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}

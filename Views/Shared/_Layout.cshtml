@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@(ViewData["Title"] != null ? ViewData["Title"] + " - " : "")Галерея картин</title>
+    <link rel="stylesheet" href="~/css/style.css" />
+    <link rel="stylesheet" href="~/css/gallery.css" />
+    <meta http-equiv="Content-Security-Policy" content="img-src * data:;">
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="~/images/logo.png" alt="Галерея картин" width="40" height="40"
+                     onerror="this.style.display='none'">
+                <p>ГАЛЕРЕЯ КАРТИН</p>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Home" ? "active" : "")">Главная</a></li>
+                    <li><a href="/Catalog" class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Catalog" ? "active" : "")">Каталог</a></li>
+                    <li><a href="/Collections" class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Collections" ? "active" : "")">Подборки</a></li>
+                    <li><a href="/AddPainting" class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "AddPainting" ? "active" : "")">Добавить</a></li>
+                    <li><a href="/Authors" class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Authors" ? "active" : "")">Авторы</a></li>
+                </ul>
+            </nav>
+            <div class="profile">
+                <a href="/Profile" class="profile-link">Профиль</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="success-banner">
+                <div class="container">
+                    @TempData["SuccessMessage"]
+                </div>
+            </div>
+        }
+        @RenderBody()
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Галерея картин. Все права защищены.</p>
+        </div>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

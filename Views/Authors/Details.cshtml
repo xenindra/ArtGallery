@@ -1,0 +1,52 @@
+@model ArtGallery.Models.Author
+@{
+    ViewData["Title"] = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var paintings = ViewBag.Paintings as List<ArtGallery.Models.Painting> ?? new();
+}
+
+<div class="author-detail">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Главная</a> /
+            <a href="/Authors">Авторы</a> /
+            <span>@Model.Name</span>
+        </div>
+
+        <div class="author-detail-layout">
+            <div class="author-detail-photo">
+                <img src="@Model.PhotoUrl" alt="@Model.Name"
+                     onerror="this.src='/images/placeholder.jpg'" />
+            </div>
+            <div class="author-detail-info">
+                <h1>@Model.Name</h1>
+                <p class="detail-meta">@Model.Years • @Model.Country</p>
+                <p class="author-style-tag">@Model.Style</p>
+                <div class="author-bio">
+                    <h3>Биография</h3>
+                    <p>@Model.Bio</p>
+                </div>
+            </div>
+        </div>
+
+        @if (paintings.Any())
+        {
+            <div class="author-paintings">
+                <h2>Работы в нашей коллекции</h2>
+                <div class="similar-grid">
+                    @foreach (var p in paintings)
+                    {
+                        <div class="painting-card" onclick="location.href='/Paintings/@p.Id'">
+                            <img src="@p.ImageUrl" alt="@p.Title"
+                                 onerror="this.src='/images/placeholder.jpg'" />
+                            <div class="painting-info">
+                                <h3>@p.Title</h3>
+                                <p class="painting-style-year">@p.Style • @p.Year</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>

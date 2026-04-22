@@ -1,0 +1,54 @@
+@model ArtGallery.ViewModels.CatalogViewModel
+
+<div class="paintings-grid" id="paintings-grid">
+    @if (!Model.Paintings.Any())
+    {
+        <div class="no-results">
+            <p>Ничего не найдено. Попробуйте изменить фильтры.</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var p in Model.Paintings)
+        {
+            <div class="painting-card" onclick="location.href='/Paintings/@p.Id'">
+                <div class="painting-info-btn"
+                     onclick="event.stopPropagation(); openInfoModal(@p.Id)"
+                     title="Подробнее">i</div>
+                <img src="@p.ImageUrl" alt="@p.Title" loading="lazy"
+                     onerror="this.src='/images/placeholder.jpg'" />
+                <div class="painting-info">
+                    <h3>@p.Title</h3>
+                    <p class="painting-author">@p.Author</p>
+                    <p class="painting-style-year">@p.Style &bull; @p.Year</p>
+                    <p class="painting-country-materials">@p.Country &bull; @p.Materials</p>
+                    <div class="painting-actions">
+                        <button class="add-to-favorites fav-btn-@p.Id @(Model.FavoriteIds.Contains(p.Id) ? "in-favorites" : "")"
+                                onclick="event.stopPropagation(); toggleFavorite(@p.Id, this)">
+                            @(Model.FavoriteIds.Contains(p.Id) ? "Убрать из избранного" : "Добавить в избранное")
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@if (Model.TotalPages > 1)
+{
+    <div class="pagination">
+        @if (Model.CurrentPage > 1)
+        {
+            <button class="page-btn" onclick="loadPage(@(Model.CurrentPage - 1))">&#8249;</button>
+        }
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            <button class="page-btn @(i == Model.CurrentPage ? "active" : "")"
+                    onclick="loadPage(@i)">@i</button>
+        }
+        @if (Model.CurrentPage < Model.TotalPages)
+        {
+            <button class="page-btn" onclick="loadPage(@(Model.CurrentPage + 1))">&#8250;</button>
+        }
+    </div>
+}

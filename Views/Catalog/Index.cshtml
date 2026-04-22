@@ -1,0 +1,137 @@
+@model ArtGallery.ViewModels.CatalogViewModel
+@{
+    ViewData["Title"] = "Каталог";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/catalog.css" />
+    <style>
+        .paintings-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr) !important;
+            gap: 1.5rem;
+        }
+
+        @@media (max-width: 1200px) {
+            .paintings-grid {
+                grid-template-columns: repeat(3, 1fr) !important;
+            }
+        }
+
+        @@media (max-width: 900px) {
+            .paintings-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+        }
+
+        @@media (max-width: 600px) {
+            .paintings-grid {
+                grid-template-columns: repeat(1, 1fr) !important;
+            }
+        }
+    </style>
+}
+
+<div class="catalog-hero">
+    <div class="container">
+        <h1>Каталог картин нашей галереи</h1>
+        <p>Найдите произведения искусства по вашим предпочтениям</p>
+    </div>
+</div>
+
+<div class="catalog-container">
+    <div class="container">
+
+        <!-- ── Сценарий 1 (ЛР3): Умный поиск с выпадающими подсказками ── -->
+        <div class="search-wrapper">
+            <input type="text" id="search-input"
+                   placeholder="Поиск по названию картины или имени автора..."
+                   class="catalog-search-input"
+                   value="@Model.Search"
+                   autocomplete="off" />
+            <div id="search-suggestions" class="search-suggestions" style="display:none;"></div>
+        </div>
+
+        <div class="catalog-toolbar">
+            <div class="sorting">
+                <label>Сортировка:</label>
+                <select id="sort-select" name="sort" class="sort-select" asp-for="Sort">
+                    <option value="name-asc">По названию (А–Я)</option>
+                    <option value="name-desc">По названию (Я–А)</option>
+                    <option value="newest">Сначала новые</option>
+                    <option value="oldest">Сначала старые</option>
+                </select>
+                <!-- Сценарий 4 (ЛР3): живой счётчик -->
+                <div class="results-count" id="results-count">
+                    Найдено @Model.TotalCount произведений
+                </div>
+            </div>
+        </div>
+
+        <div class="catalog-layout">
+            <!-- Панель фильтров -->
+            <aside class="filters">
+                <div class="filter-group">
+                    <div class="filter-header"><p>Год создания</p></div>
+                    <div class="filter-content">
+                        <div class="year-range">
+                            <input type="number" id="year-from" class="year-input" placeholder="от" min="1000" max="2100" value="@Model.YearFrom" />
+                            <span>—</span>
+                            <input type="number" id="year-to" class="year-input" placeholder="до" min="1000" max="2100" value="@Model.YearTo" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-header"><p>Стили</p></div>
+                    <div class="filter-content">
+                        @foreach (var style in Model.AllStyles)
+                        {
+                            <label class="filter-option">
+                                <input type="checkbox" data-filter="style" value="@style" @(Model.SelectedStyles.Contains(style) ? "checked" : "") />
+                                @style
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-header"><p>Страны</p></div>
+                    <div class="filter-content">
+                        @foreach (var country in Model.AllCountries)
+                        {
+                            <label class="filter-option">
+                                <input type="checkbox" data-filter="country" value="@country" @(Model.SelectedCountries.Contains(country) ? "checked" : "") />
+                                @country
+                            </label>
+                        }
+                    </div>
+                </div>
+
+                <div class="filters-footer">
+                    <button class="reset-filters" id="reset-btn">Сбросить все фильтры</button>
+                </div>
+            </aside>
+
+            <!-- Сетка карточек обновляется через AJAX -->
+            <div class="catalog-content" id="catalog-content">
+                @await Html.PartialAsync("_PaintingsGrid", Model)
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Сценарий 2 (ЛР3): Модальное окно с информацией о картине -->
+<div id="info-modal" class="modal-overlay" style="display:none;">
+    <div class="modal-window">
+        <div id="modal-content">
+            <p class="modal-loading">Загрузка...</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/catalog-ajax.js"></script>
+}

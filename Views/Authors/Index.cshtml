@@ -1,0 +1,34 @@
+@model List<ArtGallery.Models.Author>
+@{
+    ViewData["Title"] = "Авторы";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-hero">
+    <div class="container">
+        <h1>Авторы произведений</h1>
+        <p>Знакомство с великими художниками нашей коллекции</p>
+    </div>
+</div>
+
+<div class="authors-section">
+    <div class="container">
+        <div class="authors-grid">
+            @foreach (var a in Model)
+            {
+                <div class="author-card-detailed" onclick="location.href='/Authors/@a.Id'">
+                    <div class="author-image">
+                        <img src="@a.PhotoUrl" alt="@a.Name"
+                             onerror="this.src='/images/placeholder.jpg'" />
+                    </div>
+                    <div class="author-info-detailed">
+                        <h2>@a.Name</h2>
+                        <p class="author-years">@a.Years</p>
+                        <p class="author-country">@a.Country</p>
+                        <p class="author-style">@a.Style</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

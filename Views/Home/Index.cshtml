@@ -1,0 +1,43 @@
+@model List<ArtGallery.Models.Painting>
+@{
+    ViewData["Title"] = "Главная";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="hero">
+    <div class="container">
+        <h1>Галерея картин — мир искусства для каждого</h1>
+        <p>Исследуйте шедевры живописи от классики до современности</p>
+        <a href="/Catalog" class="hero-btn">Перейти в каталог</a>
+    </div>
+</div>
+
+<div class="about">
+    <div class="container">
+        <h2>О нашей галерее</h2>
+        <p>Галерея картин — это уникальное пространство, где искусство встречается с технологиями. Мы создали эту платформу для всех ценителей прекрасного, чтобы сделать мировое художественное наследие доступным и понятным. Наша галерея объединяет произведения разных эпох и стилей, создавая мост между прошлым и настоящим.</p>
+        <p>Мы верим, что искусство должно быть доступно каждому, независимо от места проживания или уровня подготовки. Поэтому наша галерея предлагает не только просмотр картин, но и образовательные материалы, исторические справки и анализ художественных приёмов.</p>
+    </div>
+</div>
+
+<div class="collection">
+    <div class="container">
+        <h2>Избранные произведения</h2>
+        <div class="featured-grid">
+            @foreach (var p in Model)
+            {
+                <div class="featured-card" onclick="location.href='/Paintings/@p.Id'">
+                    <img src="@p.ImageUrl" alt="@p.Title"
+                         onerror="this.src='/images/placeholder.jpg'" />
+                    <div class="featured-info">
+                        <h3>@p.Title</h3>
+                        <p>@p.Author • @p.Year</p>
+                    </div>
+                </div>
+            }
+        </div>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="/Catalog" class="hero-btn">Смотреть весь каталог</a>
+        </div>
+    </div>
+</div>

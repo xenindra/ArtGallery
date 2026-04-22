@@ -1,0 +1,43 @@
+@model List<CollectionViewModel>
+@{
+    ViewData["Title"] = "Подборки";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/gallery.css" />
+}
+
+<div class="page-hero">
+    <div class="container">
+        <h1>Тематические подборки</h1>
+        <p>Откройте для себя картины по стилям, векам и темам</p>
+    </div>
+</div>
+
+<div class="collections-section">
+    <div class="container">
+        <div class="collections-grid">
+            @foreach (var c in Model)
+            {
+                <div class="collection-card" onclick="location.href='/Collections/Single?name=@Uri.EscapeDataString(c.Name)'">
+                    <div class="collection-image">
+                        <img src="@c.ImageUrl" alt="@c.Name" onerror="this.src='/images/placeholder.jpg'" />
+                        <div class="collection-overlay">
+                            <span class="collection-badge">@c.Category</span>
+                        </div>
+                    </div>
+                    <div class="collection-info">
+                        <h3>@c.Name</h3>
+                        <p>@c.Subtitle</p>
+                        <div class="collection-stats">
+                            <span class="collection-count">@c.Count картин</span>
+                            <span class="collection-period">@c.Period</span>
+                        </div>
+                        <button class="view-collection">Смотреть подборку</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

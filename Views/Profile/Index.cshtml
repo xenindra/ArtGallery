@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Профиль";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var favorites = ViewBag.Favorites as List<ArtGallery.Models.Painting> ?? new List<ArtGallery.Models.Painting>();
+}
+
+<div class="page-hero">
+    <div class="container">
+        <h1>Мой профиль</h1>
+        <p>Управляйте избранными картинами</p>
+    </div>
+</div>
+
+<div class="profile-section">
+    <div class="container">
+        <h2>Избранные картины</h2>
+
+        @if (!favorites.Any())
+        {
+            <div class="empty-favorites">
+                <p>У вас пока нет избранных картин.</p>
+                <a href="/Catalog" class="hero-btn" style="background:#e74c3c;color:white;display:inline-block;padding:0.8rem 1.5rem;text-decoration:none;border-radius:8px;">Перейти в каталог</a>
+            </div>
+        }
+        else
+        {
+            <div class="paintings-grid">
+                @foreach (var p in favorites)
+                {
+                    <div class="painting-card" onclick="location.href='/Paintings/@p.Id'">
+                        <img src="@p.ImageUrl" alt="@p.Title" onerror="this.src='/images/placeholder.jpg'" />
+                        <div class="painting-info">
+                            <h3>@p.Title</h3>
+                            <p class="painting-author">@p.Author</p>
+                            <p class="painting-style-year">@p.Style • @p.Year</p>
+                            <div class="painting-actions">
+                                <form asp-action="RemoveFromFavorites" method="post" onclick="event.stopPropagation();">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@p.Id" />
+                                    <button type="submit" class="add-to-favorites in-favorites">Убрать из избранного</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .profile-section {
+        padding: 3rem 0 4rem;
+    }
+
+        .profile-section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+        }
+
+    .empty-favorites {
+        text-align: center;
+        padding: 3rem;
+        color: #888;
+    }
+
+        .empty-favorites p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+    .paintings-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.5rem;
+    }
+</style>

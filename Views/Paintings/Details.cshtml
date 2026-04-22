@@ -1,0 +1,103 @@
+@model ArtGallery.Models.Painting
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var similar = ViewBag.Similar as List<ArtGallery.Models.Painting> ?? new();
+    bool isFavorite = ViewBag.IsFavorite ?? false;
+}
+
+<div class="painting-detail">
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="/">Главная</a> /
+            <a href="/Catalog">Каталог</a> /
+            <span>@Model.Title</span>
+        </div>
+
+        <div class="painting-detail-layout">
+            <div class="painting-detail-image">
+                <img src="@Model.ImageUrl" alt="@Model.Title"
+                     onerror="this.src='/images/placeholder.jpg'" />
+            </div>
+
+            <div class="painting-detail-info">
+                <h1>@Model.Title</h1>
+                <p class="detail-author">
+                    <a href="/Authors?search=@Uri.EscapeDataString(Model.Author)">@Model.Author</a>
+                </p>
+                <p class="detail-meta">@Model.Style • @Model.Year • @Model.Country</p>
+
+                <div class="detail-fields">
+                    <div class="detail-row">
+                        <span>Материалы</span>
+                        <strong>@Model.Materials</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Размер</span>
+                        <strong>@Model.Size</strong>
+                    </div>
+                </div>
+
+                <p class="detail-description">@Model.Description</p>
+
+                <button id="fav-btn"
+                        class="add-to-favorites @(isFavorite ? "in-favorites" : "")"
+                        onclick="toggleFavoriteDetail(@Model.Id, this)">
+                    @(isFavorite ? "Убрать из избранного" : "Добавить в избранное")
+                </button>
+            </div>
+        </div>
+
+        @if (similar.Any())
+        {
+            <div class="similar-section">
+                <h2>Похожие картины</h2>
+                <div class="similar-grid">
+                    @foreach (var p in similar)
+                    {
+                        <div class="painting-card" onclick="location.href='/Paintings/@p.Id'">
+                            <img src="@p.ImageUrl" alt="@p.Title"
+                                 onerror="this.src='/images/placeholder.jpg'" />
+                            <div class="painting-info">
+                                <h3>@p.Title</h3>
+                                <p class="painting-author">@p.Author</p>
+                                <p class="painting-style-year">@p.Style • @p.Year</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+<script>
+function toggleFavoriteDetail(id, btn) {
+    fetch('/Catalog/ToggleFavorite', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ paintingId: id })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.status === 'added') {
+            btn.textContent = 'Убрать из избранного';
+            btn.classList.add('in-favorites');
+        } else {
+            btn.textContent = 'Добавить в избранное';
+            btn.classList.remove('in-favorites');
+        }
+        showNotification(data.message);
+    });
+}
+
+function showNotification(msg) {
+    const n = document.createElement('div');
+    n.className = 'notification';
+    n.textContent = msg;
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 3000);
+}
+</script>
+}

@@ -1,0 +1,98 @@
+/* catalog.css — стили страницы каталога */
+
+.catalog-container { padding: 2rem 0 4rem; }
+
+.catalog-toolbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 0; margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    flex-wrap: wrap; gap: 1rem;
+}
+.sorting { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.sorting label { color: #666; font-size: 0.95rem; }
+
+.sort-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd; border-radius: 8px;
+    font-size: 0.95rem; background: white;
+    cursor: pointer;
+}
+.sort-select:focus { border-color: #e74c3c; outline: none; }
+
+.results-count {
+    color: #888; font-size: 0.95rem;
+    padding: 0.4rem 1rem;
+    background: #f8f8f8; border-radius: 20px;
+    transition: all 0.3s;
+}
+
+.catalog-layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 2rem;
+}
+@media (max-width: 900px) { .catalog-layout { grid-template-columns: 1fr; } }
+
+/* Панель фильтров */
+.filters {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1.5rem;
+    height: fit-content;
+    position: sticky; top: 100px;
+}
+.filter-group { margin-bottom: 1.5rem; }
+.filter-header p { font-weight: 600; color: #2c3e50; margin-bottom: 0.8rem; font-size: 1rem; }
+.filter-content { display: flex; flex-direction: column; gap: 0.5rem; }
+.filter-option { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.9rem; color: #444; }
+.filter-option input { cursor: pointer; accent-color: #e74c3c; }
+.filter-option:hover { color: #e74c3c; }
+
+.filters-footer { margin-top: 1.5rem; border-top: 1px solid #eee; padding-top: 1rem; }
+.reset-filters {
+    width: 100%;
+    padding: 0.6rem;
+    background: none; border: 1px solid #ddd;
+    border-radius: 8px; cursor: pointer;
+    color: #888; font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.reset-filters:hover { border-color: #e74c3c; color: #e74c3c; }
+
+/* Сетка картин */
+.paintings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.painting-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+.painting-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.14); }
+.painting-card img { width: 100%; height: 200px; object-fit: cover; display: block; }
+
+.painting-info { padding: 1rem; }
+.painting-info h3 { font-size: 1rem; color: #2c3e50; margin-bottom: 0.3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.painting-author { color: #e74c3c; font-size: 0.85rem; margin-bottom: 0.2rem; }
+.painting-style-year { color: #888; font-size: 0.8rem; margin-bottom: 0.2rem; }
+.painting-country-materials { color: #aaa; font-size: 0.8rem; margin-bottom: 0.8rem; }
+.painting-actions { margin-top: 0.5rem; }
+
+/* Строка поиска */
+.catalog-search-input {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    margin-bottom: 0;
+}
+.catalog-search-input:focus { border-color: #e74c3c; outline: none; }
