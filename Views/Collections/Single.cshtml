@@ -1,4 +1,4 @@
-@model List<ArtGallery.Models.Painting>
+п»ї@model List<ArtGallery.Models.Painting>
 @{
     ViewData["Title"] = ViewBag.CollectionName;
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -110,16 +110,16 @@
             <div class="collection-stats-detailed">
                 <div class="stat-item-detailed">
                     <span class="stat-number">@Model.Count</span>
-                    <span class="stat-label">картин</span>
+                    <span class="stat-label">РєР°СЂС‚РёРЅ</span>
                 </div>
                 <div class="stat-item-detailed">
                     <span class="stat-number">@ViewBag.CollectionPeriod</span>
-                    <span class="stat-label">период</span>
+                    <span class="stat-label">РїРµСЂРёРѕРґ</span>
                 </div>
             </div>
         </div>
 
-        <h2>Картины в подборке</h2>
+        <h2>РљР°СЂС‚РёРЅС‹ РІ РїРѕРґР±РѕСЂРєРµ</h2>
         <div class="paintings-grid">
             @foreach (var p in Model)
             {
@@ -128,7 +128,7 @@
                     <div class="painting-info">
                         <h3>@p.Title</h3>
                         <p class="painting-author">@p.Author</p>
-                        <p class="painting-style-year">@p.Style • @p.Year</p>
+                        <p class="painting-style-year">@p.Style вЂў @p.Year</p>
                     </div>
                 </div>
             }

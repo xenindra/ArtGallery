@@ -1,7 +1,4 @@
-// ================================================================
-//  add-painting.js — клиентская валидация формы (ЛР5)
-//  Сервер-сайд валидация — в AddPaintingController.cs
-// ================================================================
+
 
 const form       = document.getElementById('add-painting-form');
 const submitBtn  = document.getElementById('submit-btn');

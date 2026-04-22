@@ -1,6 +1,6 @@
-@model List<CollectionViewModel>
+п»ї@model List<CollectionViewModel>
 @{
-    ViewData["Title"] = "Подборки";
+    ViewData["Title"] = "РџРѕРґР±РѕСЂРєРё";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,8 +10,8 @@
 
 <div class="page-hero">
     <div class="container">
-        <h1>Тематические подборки</h1>
-        <p>Откройте для себя картины по стилям, векам и темам</p>
+        <h1>РўРµРјР°С‚РёС‡РµСЃРєРёРµ РїРѕРґР±РѕСЂРєРё</h1>
+        <p>РћС‚РєСЂРѕР№С‚Рµ РґР»СЏ СЃРµР±СЏ РєР°СЂС‚РёРЅС‹ РїРѕ СЃС‚РёР»СЏРј, РІРµРєР°Рј Рё С‚РµРјР°Рј</p>
     </div>
 </div>
 
@@ -31,10 +31,10 @@
                         <h3>@c.Name</h3>
                         <p>@c.Subtitle</p>
                         <div class="collection-stats">
-                            <span class="collection-count">@c.Count картин</span>
+                            <span class="collection-count">@c.Count РєР°СЂС‚РёРЅ</span>
                             <span class="collection-period">@c.Period</span>
                         </div>
-                        <button class="view-collection">Смотреть подборку</button>
+                        <button class="view-collection">РЎРјРѕС‚СЂРµС‚СЊ РїРѕРґР±РѕСЂРєСѓ</button>
                     </div>
                 </div>
             }
